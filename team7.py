@@ -7,9 +7,9 @@
 # John L and Vicky W
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'Team 7' # Only 10 chars displayed.
+strategy_name = 'if they betray twice in a row, we betray, otherwise collude'
+strategy_description = 'checks their history for two betrays in a row'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -27,7 +27,12 @@ def move(my_history, their_history, my_score, their_score):
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
     
-    return 'c'
+    if their_history[-2:].lower() == 'bb':
+        return 'b'
+    elif their_history[-3:].lower() == 'ccc':
+        return 'c'
+    else:
+        return 'c'
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
